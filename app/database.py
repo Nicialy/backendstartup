@@ -35,5 +35,6 @@ class Database():
         await self.pool.execute(f"""
             UPDATE users set first_name='{userprofile.first_name}' , last_name='{userprofile.last_name}' where login='{login}';
         """)
+    
 
 
