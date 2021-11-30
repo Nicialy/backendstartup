@@ -1,5 +1,6 @@
-from pydantic import BaseModel
-from typing import Optional
+from fastapi.params import Form
+from pydantic import BaseModel, validator
+from typing import Optional, Text
 
 
 
@@ -9,8 +10,10 @@ from typing import Optional
 
 class UserProfile(BaseModel):
     
-    first_name:str
-    last_name: str
+    first_name:str = None
+    last_name: str = None
+    oldpassword: str = None
+    newpassword: str = None
 class User(BaseModel):
     login : str
     password: str
@@ -27,3 +30,18 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     login: Optional[str] = None
+
+class FeedPost(BaseModel):
+    Text : str 
+    description: str = None
+    url :str
+class FeedPostShow(BaseModel):
+    id: int
+    id_user: int
+    number_like: int
+    Text :str
+    description: str = None
+    url :str = None
+
+    
+    

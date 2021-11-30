@@ -1,5 +1,5 @@
 import asyncpg
-from app.model import User, UserProfile
+from app.model import FeedPost, User, UserProfile
 class Database():
 
     async def create_pool(self):
@@ -32,9 +32,46 @@ class Database():
                 """)
         return userprofile
     async def chang_profile(self,login:str,userprofile: UserProfile):
-        await self.pool.execute(f"""
-            UPDATE users set first_name='{userprofile.first_name}' , last_name='{userprofile.last_name}' where login='{login}';
+        strback=''
+        if userprofile.first_name != None:
+            await self.pool.execute(f"""
+                UPDATE users set first_name='{userprofile.first_name}' where login='{login}';
+            """)
+            strback +=f" {userprofile.first_name} succeful change"
+        if userprofile.last_name != None:
+            await self.pool.execute(f"""
+                UPDATE users set last_name='{userprofile.last_name}' where login='{login}';
+            """)
+            strback +=f" {userprofile.last_name} succeful change"
+        if userprofile.newpassword != None:
+            await self.pool.execute(f"""
+                UPDATE users set password='{userprofile.newpassword}' where login='{login}';
+            """)
+            strback +=f" password succeful change"
+        if strback =='':
+            strback = " Nothing to do"
+        return strback
+    async def create_post(self,login:str,body: FeedPost):
+        uid = await self.pool.fetchval(f"""
+            SELECT uid FROM users WHERE login = '{login}'
         """)
+        print(uid)
+        await self.pool.execute(f'''
+        INSERT INTO post (id_user,number_like,Textz,description,url) VALUES ({uid},0,'{body.Text}','{body.description}','{body.url}');
+        ''')
+    async def take_post(self):
+        return await self.pool.fetch(f'''
+            SELECT * FROM post
+        ''')
+    async def take_recomededpost(self):
+        post = await self.pool.fetch(f"""
+            SELECT * FROM POST order by  number_like DESC;
+        """)  
+        return post
+    async def change_password(self):
+        pass  
+    
+        
     
 
 

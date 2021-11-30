@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.database import Database
 from app.routers import auth
-from .routers import users,registr
+from .routers import users,registr,posts
 
 
         
@@ -23,4 +23,5 @@ async def shutdown():
 app.include_router(users.router)
 app.include_router(auth.router)
 app.include_router(registr.router)
+app.include_router(posts.router)
 
