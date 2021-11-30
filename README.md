@@ -6,3 +6,5 @@ foo@bar:~$ pip install requirements.txt
 ```bash
 foo@bar:~$ python main.py
 ```
+
+https://fast-api-backendstartup.herokuapp.com/docs#/
