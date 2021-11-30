@@ -55,10 +55,11 @@ class Database():
         uid = await self.pool.fetchval(f"""
             SELECT uid FROM users WHERE login = '{login}'
         """)
-        print(uid)
+
         await self.pool.execute(f'''
         INSERT INTO post (id_user,number_like,Textz,description,url) VALUES ({uid},0,'{body.Text}','{body.description}','{body.url}');
         ''')
+        
     async def take_post(self):
         return await self.pool.fetch(f'''
             SELECT * FROM post
@@ -68,8 +69,7 @@ class Database():
             SELECT * FROM POST order by  number_like DESC;
         """)  
         return post
-    async def change_password(self):
-        pass  
+    s
     
         
     
