@@ -1,8 +1,0 @@
-passlib
-bcrypt
-fastapi
-uvicorn
-asyncpg
-python-jose
-python-multipart
-python
