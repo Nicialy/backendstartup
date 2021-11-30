@@ -35,13 +35,7 @@ class FeedPost(BaseModel):
     Text : str 
     description: str = None
     url :str
-class FeedPostShow(BaseModel):
-    id: int
-    id_user: int
-    number_like: int
-    Text :str
-    description: str = None
-    url :str = None
+
 
     
     

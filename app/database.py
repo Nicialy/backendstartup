@@ -69,7 +69,7 @@ class Database():
             SELECT * FROM POST order by  number_like DESC;
         """)  
         return post
-    s
+    
     
         
     
