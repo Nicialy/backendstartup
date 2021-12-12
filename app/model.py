@@ -3,25 +3,23 @@ from pydantic import BaseModel, validator
 from typing import Optional, Text
 
 
-
-
-
-
-
 class UserProfile(BaseModel):
-    
-    first_name:str = None
+
+    first_name: str = None
     last_name: str = None
     oldpassword: str = None
     newpassword: str = None
+
+
 class User(BaseModel):
-    login : str
+    login: str
     password: str
-    
+
 
 class LoginUser(BaseModel):
-        login:str
-        password: str
+    login: str
+    password: str
+
 
 class Token(BaseModel):
     access_token: str
@@ -31,11 +29,8 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     login: Optional[str] = None
 
+
 class FeedPost(BaseModel):
-    Text : str 
+    Text: str
     description: str = None
-    url :str
-
-
-    
-    
+    url: str
