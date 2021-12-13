@@ -51,7 +51,7 @@ class Database:
                          UPDATE users set last_name='{userprofile.last_name}' where login='{login}';
             """)
             strback += f" {userprofile.last_name} succeful change"
-        if userprofile.new_password is not None:
+        if userprofile.new_password:
             await self.pool.execute(f"""
                         UPDATE users set password='{userprofile.new_password}' where login='{login}';
             """)
