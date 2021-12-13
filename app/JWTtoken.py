@@ -23,7 +23,7 @@ def verify_token(token: str, credentails_exception):
         if login is None:
             raise credentails_exception
         token_data = TokenData(login=login)
-        print(login)
+        
     except JWTError:
         raise credentails_exception
     return token_data.login

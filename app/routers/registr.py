@@ -1,11 +1,12 @@
 from fastapi import APIRouter, HTTPException, status
-from app.JWTtoken import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
+from app.JWTtoken import  create_access_token
 from datetime import timedelta
 from fastapi.param_functions import Depends
 from app.database import Database
 from fastapi.security import OAuth2PasswordRequestForm
 from app.hash import get_password_hash
 from app.model import User
+from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 
 
 router = APIRouter(tags=["Registration"])
@@ -14,8 +15,8 @@ db = Database
 
 @router.post('/registration')
 async def registr(request: OAuth2PasswordRequestForm = Depends()):
-    useruid = await db.check_login(db, request.username)
-    if useruid:
+    user_uid = await db.check_login(db, request.username)
+    if user_uid:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"User with this login exists")
     if len(request.password) < 6 or request.password.isdigit():

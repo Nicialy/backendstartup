@@ -31,6 +31,6 @@ class TokenData(BaseModel):
 
 
 class FeedPost(BaseModel):
-    Text: str
+    text_post: str
     description: str = None
     url: str

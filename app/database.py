@@ -3,7 +3,7 @@ from app.model import FeedPost, User, UserProfile
 from app.settings import DATABASE_URL
 
 
-class Database():
+class Database:
 
     async def create_pool(self):
 
@@ -40,7 +40,7 @@ class Database():
         return userprofile
 
     async def chang_profile(self, login: str, userprofile: UserProfile):
-        strback = ''
+        strback = ""
         if userprofile.first_name is not None:
             await self.pool.execute(f"""
                         UPDATE users set first_name='{userprofile.first_name}' where login='{login}';
@@ -56,7 +56,7 @@ class Database():
                         UPDATE users set password='{userprofile.newpassword}' where login='{login}';
             """)
             strback += f" password succeful change"
-        if strback == '':
+        if not strback:
             strback = " Nothing to do"
         return strback
 
@@ -66,7 +66,7 @@ class Database():
         """)
 
         await self.pool.execute(f'''
-                     INSERT INTO post (id_user,number_like,Textz,description,url) VALUES ({uid},0,'{body.Text}','{body.description}','{body.url}');
+                     INSERT INTO post (id_user,number_like,Textz,description,url) VALUES ({uid},0,'{body.text_post}','{body.description}','{body.url}');
         ''')
 
     async def take_post(self):

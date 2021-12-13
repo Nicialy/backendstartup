@@ -1,10 +1,12 @@
 from fastapi import APIRouter, HTTPException, status
 from fastapi.param_functions import Depends
-from app.JWTtoken import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
+from app.JWTtoken import  create_access_token
 from datetime import timedelta
 from app.database import Database
 from app.hash import verify_password
 from fastapi.security import OAuth2PasswordRequestForm
+
+from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 
 
 router = APIRouter(tags=["Authentication"])
@@ -13,8 +15,8 @@ db = Database
 
 @router.post('/login')
 async def login(request: OAuth2PasswordRequestForm = Depends()):
-    useruid = await db.check_login(db, request.username)
-    if not useruid:
+    user_uid = await db.check_login(db, request.username)
+    if not user_uid:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"User with {request.username} not found")
 
