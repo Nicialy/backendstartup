@@ -7,8 +7,8 @@ class UserProfile(BaseModel):
 
     first_name: str = None
     last_name: str = None
-    oldpassword: str = None
-    newpassword: str = None
+    old_password: str = None
+    new_password: str = None
 
 
 class User(BaseModel):

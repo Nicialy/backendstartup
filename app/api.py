@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from app.database import Database
+from app.database import Database as db
 from app.routers import auth
 from .routers import users, registr, posts
 
 
-db = Database
+
 app = FastAPI()
 
 

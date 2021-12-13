@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from fastapi.param_functions import Depends
 from app.JWTtoken import  create_access_token
 from datetime import timedelta
-from app.database import Database
+from app.database import Database as db
 from app.hash import verify_password
 from fastapi.security import OAuth2PasswordRequestForm
 
@@ -10,7 +10,7 @@ from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 
 
 router = APIRouter(tags=["Authentication"])
-db = Database
+
 
 
 @router.post('/login')

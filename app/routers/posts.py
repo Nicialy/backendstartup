@@ -4,12 +4,12 @@ from fastapi import APIRouter
 from starlette.requests import Request
 from app.oauth2 import get_current_user
 from fastapi.param_functions import Depends
-from app.database import Database
+from app.database import Database as db
 from app.model import FeedPost, User
 
 
 router = APIRouter(tags=["feed"])
-db = Database
+
 
 
 @router.post('/feed')

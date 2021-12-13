@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from app.JWTtoken import  create_access_token
 from datetime import timedelta
 from fastapi.param_functions import Depends
-from app.database import Database
+from app.database import Database as db
 from fastapi.security import OAuth2PasswordRequestForm
 from app.hash import get_password_hash
 from app.model import User
@@ -10,7 +10,7 @@ from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 
 
 router = APIRouter(tags=["Registration"])
-db = Database
+
 
 
 @router.post('/registration')
